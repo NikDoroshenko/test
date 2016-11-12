@@ -1,40 +1,40 @@
 
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
-app.get('/',  (req, res) => {
+app.use(cors());
+app.get('/task2B',  (req, res) => {
 const str = req.query.fullname;
+var result = "Invalid fullname";
+if (str.length>0) {
 var mas = str.split(' ');
-var message;
-var result;
 var cnt = mas.length;
 
-if (cnt>3||str == '') message = "Invalid fullname";
+if (cnt>0 && cnt<4) {
 
-switch (cnt) {
-  case 1:
-    result = mas[0];
-    break;
-  case 2:
-    result = mas[1] + ' ' + mas[0].substr(0,1) + '.';
-    break;
-  case 3:
-    result = mas[2] + ' ' + mas[0].substr(0,1) + '.' + mas[1].substr(0,1) + '.';
-    break;
-  default:
+    switch (cnt) {
+      case 1:
+        result = mas[0];
+        break;
+      case 2:
+        result = mas[1] + ' ' + mas[0].substr(0,1) + '. ';
+        break;
+      case 3:
+        result = mas[2] + ' ' + mas[0].substr(0,1) + '. ' + mas[1].substr(0,1) + '.';
+        break;
+
+
+      }
 }
+}
+else
+   result = "Invalid fullname";
 
- res.json({
-  cnt,
-  result,
-  message
-  });
+ res.send(result.trim());
 
 })
 
 app.listen(3000,  () => {
   console.log('Example app listening on port 3000!');
 })
-
-
-
