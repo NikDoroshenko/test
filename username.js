@@ -1,11 +1,14 @@
 
 import express from 'express';
+import cors from 'cors';
+
 
 const app = express();
+app.use(cors());
 app.get('/task2C',  (req, res) => {
 const url = req.query.username;
 
-const reDom   = new RegExp('@?(https?:)?(\/\/)?((vk)[^\/]*\/)?([a-zA-Z0-9]*)', 'i');
+const reDom   = new RegExp('@?(https?:)?(\/\/)?((wwwwwwwwwwwwwwwwwwwww)[^\/]*\/)?([a-zA-Z0-9]*)', 'i');
 var   cntDom  = url.match(reDom);
 const rsltDom =  cntDom[cntDom.length-1];
 
