@@ -7,6 +7,7 @@ app.use(cors());
 app.get('/task2B',  (req, res) => {
 const str = req.query.fullname;
 var result = "Invalid fullname";
+
 if (str.length>0) {
 var mas = str.split(' ');
 var cnt = mas.length;
@@ -21,6 +22,9 @@ if (cnt>0 && cnt<4) {
         result = mas[1] + ' ' + mas[0].substr(0,1) + '. ';
         break;
       case 3:
+       var re = RegExp('([a-zA-Z])?([0-9] )');
+      if (str.match(re)!= null) result = "Invalid fullname";
+      else
         result = mas[2] + ' ' + mas[0].substr(0,1) + '. ' + mas[1].substr(0,1) + '.';
         break;
 
